@@ -1,4 +1,4 @@
-# An Alfred 2/3 Workflow for Pass
+# An Alfred 4 Workflow for Pass
 
 [Pacmax Page](https://pacmax.org/pac/cgenie-alfred-pass/)
 
@@ -14,7 +14,7 @@ To make this work you need:
 * `gpg-agent` -- install with `brew`
 * `pinentry-mac` -- also install with `brew` (this is GUI frontend for `gpg-agent`).
 * (optionally) the `fuzzywuzzy` and (also optionally) `python-Levenshtein`
-  Python modules (install with `pip install --user fuzzywuzzy python-Levenshtein`)
+  Python modules (install with `pip3 install --user fuzzywuzzy python-Levenshtein`)
 
 Next configure `gpg-agent` to use `pinentry-mac` and not the bundled one, editing `~/.gnupg/gpg-agent.conf`:
 
@@ -53,27 +53,13 @@ Basic Alfred commands:
 
 This will search through your passwords using the filter terms you provided.
 
-The password will be copied to clipboard and cleared after 45 seconds (this is the default
-`pass -c` behavior).  You can change that time by modifying the env variable
-`PASSWORD_STORE_CLIP_TIME`. Or in the `pass-show.sh` file you can change this line
+The password will be copied to clipboard and cleared after 45 seconds.
 
-```
-pass show -c $QUERY
-```
-
-into this one
-
-```
-pass show $QUERY | awk 'BEGIN{ORS=""} {print; exit}' | pbcopy
-```
-
-to aviod auto-clearing of clipboard.
-
-## `pg <id>`
+## `pass-generate <id>`
 
 Calls `pass generate` to add a new password with default length of 20 chars.
 
-## `po <filter terms>`
+## `pass-otp <filter terms>`
 
 This will search through your OTP passwords (requires `pass-otp`) using the filter terms you provided.
 
